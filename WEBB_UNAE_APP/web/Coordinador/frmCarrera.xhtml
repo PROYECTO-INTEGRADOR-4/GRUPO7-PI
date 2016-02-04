@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Carrera</title>
+    </h:head>
+    <p:growl autoUpdate="true"/>
+    <ui:composition template="frmCoordinador.xhtml">
+        <ui:define name="contenido">
+            <h:form id="frmCarrera">
+                <p:dataTable
+                    id="dataListCarrera"
+                    paginator="true"
+                    rows="10"
+                    reflow="true"
+                    var="carrera"
+                    value="#{carreraControlador.lstcarrea}"
+                    >
+                    <f:facet name="header" class="right_content">
+                        <p:commandButton 
+                            id="createButton"
+                            value="Nueva Carrera"
+                            update=":TcarreraCreateForm"
+                            oncomplete="PF('dlgInsertCarrera').show();">
+                        </p:commandButton>
+                    </f:facet>
+
+                    <p:column headerText="ID">
+                        <p:outputLabel value="#{carrera.idcarrera}"/>
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <p:outputLabel value="#{carrera.strnombrecarrera}"/>
+                    </p:column>
+
+                    <p:column headerText="Descripcion">
+                        <p:outputLabel value="#{carrera.strdescripcioncarrera}"/>
+                    </p:column>
+
+
+                    <p:column headerText="Nivel">
+                        <p:outputLabel value="#{carrera.strnivel}"/>
+                    </p:column>
+
+
+                    <p:column headerText="Area">
+                        <p:outputLabel value="#{carrera.strarea}"/>
+                    </p:column>
+
+
+                    <p:column headerText="Escuela">
+                        <p:outputLabel value="#{carrera.strescuela}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+
+            <p:dialog 
+                header="Nueva Carrera" 
+                widgetVar="dlgInsertCarrera" 
+                showEffect="fade" 
+                hideEffect="explode" 
+                responsive="true" 
+                resizable="false">
+                <h:form id="TcarreraCreateForm">
+                    <h:panelGroup>
+                        <p:panelGrid 
+                            columns="2"
+                            styleClass="tblForm"
+                            rendered="#{areaControlador.objtArea!=null}">
+                            <h:outputLabel value="Nombre: " for="txtNombre"/>
+                            <p:inputText 
+                                id="txtNombre" 
+                                value="#{carreraControlador.objCarrera.strnombrecarrera}"
+                                required="true"
+                                requiredMessage="Defina el nombre de la Carrera"/>
+                            <h:outputLabel value="Descripción: " for="txtDescripcion"/>
+                            <p:inputText 
+                                id="txtDescripcion" 
+                                value="#{carreraControlador.objCarrera.strdescripcioncarrera}"
+                                />
+                            <h:outputLabel value="Nivel: " for="txtNivel"/>
+                            <p:inputText 
+                                id="txtNivel" 
+                                value="#{carreraControlador.objCarrera.strnivel}"
+                                />
+                            <h:outputLabel value="Area: " for="txtArea"/>
+                            <p:inputText 
+                                id="txtArea" 
+                                value="#{carreraControlador.objCarrera.idarea}"
+                                />
+                            <h:outputLabel value="Escuela: " for="txtEscuela"/>
+                            <p:inputText 
+                                id="txtEscuela" 
+                                value="#{carreraControlador.objCarrera.idescuela}"
+                                />
+                        </p:panelGrid>
+                        <p:separator/>
+                        <p:commandButton
+                            value="Guardar"
+                            actionListener="#{carreraControlador.insertarCarrera()}"
+                            update=":frmCarrera:dataListCarrera"
+                            />
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+    </ui:composition>
+</html>
+

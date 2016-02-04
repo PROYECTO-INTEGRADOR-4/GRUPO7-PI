@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Area</title>
+    </h:head>
+    <p:growl autoUpdate="true"/>
+    <ui:composition template="frmCoordinador.xhtml">
+        <ui:define name="contenido">
+            <h:form id="frmArea">
+                <p:dataTable
+                    id="dataListArea"
+                    paginator="true"
+                    rows="10"
+                    reflow="true"
+                    var="area"
+                    value="#{areaControlador.lstarea}"
+                    >
+                    <f:facet name="header" class="right_content">
+                        <p:commandButton 
+                            id="createButton"
+                            value="Nueva Area"
+                            update=":TareaCreateForm"
+                            oncomplete="PF('dlgInsertArea').show();">
+
+                        </p:commandButton>
+                    </f:facet>
+
+                    <p:column headerText="ID">
+                        <p:outputLabel value="#{area.idarea}"/>
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <p:outputLabel value="#{area.strarea}"/>
+                    </p:column>
+
+                    <p:column headerText="Descripción">
+                        <p:outputLabel value="#{area.strdescripcion}"/>
+                    </p:column>
+
+
+
+                </p:dataTable>
+
+            </h:form>
+
+            <p:dialog 
+                header="Nuevo Area" 
+                widgetVar="dlgInsertArea" 
+                showEffect="fade" 
+                hideEffect="explode" 
+                responsive="true" 
+                resizable="false">
+                <h:form id="TareaCreateForm">
+                    <h:panelGroup>
+                        <p:panelGrid 
+                            columns="2"
+                            styleClass="tblForm"
+                            rendered="#{areaControlador.objtArea!=null}">
+                            <h:outputLabel value="Nombre: " for="txtNombre"/>
+                            <p:inputText 
+                                id="txtNombre" 
+                                value="#{areaControlador.objtArea.strarea}"
+                                required="true"
+                                requiredMessage="Defina el nombre del Area"/>
+                            <h:outputLabel value="Descripción: " for="txtDescripcion"/>
+                            <p:inputText 
+                                id="txtDescripcion" 
+                                value="#{areaControlador.objtArea.strdescripcion}"
+                               />
+
+                        </p:panelGrid>
+                        <p:separator/>
+                        <p:commandButton
+                            value="Guardar"
+                            actionListener="#{areaControlador.insertarArea()}"
+                            update=":frmArea:dataListArea"
+                            />
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+    </ui:composition>
+</html>
+

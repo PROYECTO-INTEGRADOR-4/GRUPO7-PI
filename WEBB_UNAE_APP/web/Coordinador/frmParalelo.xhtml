@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Paralelo</title>
+    </h:head>
+    <p:growl autoUpdate="true"/>
+    <ui:composition template="frmCoordinador.xhtml">
+        <ui:define name="contenido">
+            <h:form id="frmParalelo">
+                <p:dataTable
+                    id="dataListParalelo"
+                    paginator="true"
+                    rows="10"
+                    reflow="true"
+                    var="paralelo"
+                    value="#{paraleloControlador.lstparalelo}"
+                    >
+                    <f:facet name="header" class="right_content">
+                        <p:commandButton 
+                            id="createButton"
+                            value="Nuevo Paralelo"
+                            update=":TparaleloCreateForm"
+                            oncomplete="PF('dlgInsertParalelo').show();">
+
+                        </p:commandButton>
+                    </f:facet>
+
+                    <p:column headerText="ID">
+                        <p:outputLabel value="#{paralelo.idparalelo}"/>
+                    </p:column>
+
+                    <p:column headerText="Nombre">
+                        <p:outputLabel value="#{paralelo.strnombreparalelo}"/>
+                    </p:column>
+
+                    <p:column headerText="Descripción">
+                        <p:outputLabel value="#{paralelo.strdescripcionparalelo}"/>
+                    </p:column>
+
+
+                    <p:column headerText="Ubicación">
+                        <p:outputLabel value="#{paralelo.strubicacion}"/>
+                    </p:column>
+
+
+                </p:dataTable>
+
+            </h:form>
+
+            <p:dialog 
+                header="Nuevo Paralelo" 
+                widgetVar="dlgInsertParalelo" 
+                showEffect="fade" 
+                hideEffect="explode" 
+                responsive="true" 
+                resizable="false">
+                <h:form id="TparaleloCreateForm">
+                    <h:panelGroup>
+                        <p:panelGrid 
+                            columns="2"
+                            styleClass="tblForm"
+                            rendered="#{paraleloControlador.objParalelo!=null}">
+
+                            <h:outputLabel value="Nombre: " for="txtNombre"/>
+                            <p:inputText 
+                                id="txtNombre" 
+                                value="#{paraleloControlador.objParalelo.strnombreparalelo}"
+                                required="true"
+                                requiredMessage="Defina el nombre del Paralelo"/>
+                            <h:outputLabel value="Descripción: " for="txtDescripcion"/>
+                            <p:inputTextarea 
+                                id="txtDescripcion" 
+                                value="#{paraleloControlador.objParalelo.strdescripcionparalelo}"
+                                rows="6" 
+                                cols="33"
+
+                                />
+                            <h:outputLabel value="Ubicación: " for="txtUbicacion"/>
+                            <p:inputTextarea 
+                                id="txtUbicacion" 
+                                value="#{paraleloControlador.objParalelo.strubicacion}"
+                                rows="6" 
+                                cols="33"
+
+                                />
+                        </p:panelGrid>
+                        <p:separator/>
+                        <p:commandButton
+                            value="Guardar"
+                            actionListener="#{paraleloControlador.insertarParalelo()}"
+                            update=":frmParalelo:dataListParalelo"
+                            />
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+    </ui:composition>
+</html>
+

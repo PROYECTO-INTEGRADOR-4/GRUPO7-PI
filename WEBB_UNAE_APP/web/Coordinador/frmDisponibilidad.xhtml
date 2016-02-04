@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Disponibilidad</title>
+    </h:head>
+    <p:growl autoUpdate="true"/>
+    <ui:composition template="frmCoordinador.xhtml">
+        <ui:define name="contenido">
+            <h:form id="frmDisponibilidad">
+                <p:dataTable
+                    id="dataListDisponibilidad"
+                    paginator="true"
+                    rows="10"
+                    reflow="true"
+                    var="disponibilidad"
+                    value="#{disponibilidadControldaor.lstdisponibilidad}"
+                    >
+                    <f:facet name="header" class="right_content">
+                        <p:commandButton 
+                            id="createButton"
+                            value="Nueva Disponibilidad"
+                            update=":TdisponibilidadCreateForm"
+                            oncomplete="PF('dlgInsertDisponibilidad').show();">
+
+                        </p:commandButton>
+                    </f:facet>
+
+                    <p:column headerText="ID">
+                        <p:outputLabel value="#{disponibilidad.iddisponibilidad}"/>
+                    </p:column>
+
+                    <p:column headerText="Día">
+                        <p:outputLabel value="#{disponibilidad.diadisponibilidad}"/>
+                    </p:column>
+
+                    <p:column headerText="Hora">
+                        <p:outputLabel value="#{disponibilidad.horadisponibilidad}"/>
+                    </p:column>
+
+                    <p:column headerText="Jornada">
+                        <p:outputLabel value="#{disponibilidad.jornadadisponibilidad}"/>
+                    </p:column>
+
+
+                </p:dataTable>
+
+            </h:form>
+
+            <p:dialog 
+                header="Nueva Disponibilidad" 
+                widgetVar="dlgInsertDisponibilidad" 
+                showEffect="fade" 
+                hideEffect="explode" 
+                responsive="true" 
+                resizable="false">
+                <h:form id="TdisponibilidadCreateForm">
+                    <h:panelGroup>
+                        <p:panelGrid 
+                            columns="2"
+                            styleClass="tblForm"
+                            rendered="#{disponibilidadControldaor.objDisponibilidad!=null}">
+                            <p:outputLabel for="cbxDía" value="Día:"/>
+                            <p:selectOneMenu id="cbxDía" value="#{disponibilidadControldaor.objDisponibilidad.diadisponibilidad}"  style="width:125px" required="true" requiredMessage="Defina el día de la Disponibilidad">
+                                <f:selectItem itemLabel="LUNES" itemValue="LUNES" />
+                                <f:selectItem itemLabel="MARTES" itemValue="MARTES" /> 
+                                <f:selectItem itemLabel="MIERCOLES" itemValue="MIERCOLES" />
+                                <f:selectItem itemLabel="JUEVES" itemValue="JUEVES" />                              
+                                <f:selectItem itemLabel="VIERNES" itemValue="VIERNES" />
+                                <f:selectItem itemLabel="SABADO" itemValue="SABADO" />                            
+                            </p:selectOneMenu>
+
+                            <h:outputLabel value="Hora: " for="txtHora"/>
+                            <p:inputText 
+                                id="txtHora" 
+                                value="#{disponibilidadControldaor.objDisponibilidad.horadisponibilidad}"
+                                required="true"
+                                requiredMessage="Defina el la hora de la disponibilidad"/>
+                            <h:outputLabel value="Jornada: " for="txtJornada"/>
+                            <p:inputText 
+                                id="txtJornada" 
+                                value="#{disponibilidadControldaor.objDisponibilidad.jornadadisponibilidad}"                                
+                                required="true"
+                                requiredMessage="Defina el la jornada de la disponibilidad"/>
+
+
+                        </p:panelGrid>
+                        <p:separator/>
+                        <p:commandButton
+                            value="Guardar"
+                            actionListener="#{disponibilidadControldaor.insertarDisponibilidad()}"
+                            update=":frmDisponibilidad:dataListDisponibilidad"
+                            />
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+    </ui:composition>
+</html>
+
