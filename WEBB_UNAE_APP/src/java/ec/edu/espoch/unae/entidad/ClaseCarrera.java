@@ -15,35 +15,21 @@ public class ClaseCarrera {
     private String strnombrecarrera;
     private String strdescripcioncarrera;
     private String strnivel;
-    private int idarea;
-    private int idescuela;
-    private String strarea;
-    private String strescuela;
+
+    private ClaseArea objArea;
+    private ClaseEscuela objEscuela;
 
     public ClaseCarrera() {
     }
 
-    public ClaseCarrera(int idcarrera, String strnombrecarrera, String strdescripcioncarrera, String strnivel, int idarea, int idescuela, String strarea, String strescuela) {
+    public ClaseCarrera(int idcarrera, String strnombrecarrera, String strdescripcioncarrera, String strnivel, ClaseEscuela objEscuela, ClaseArea objArea) {
         this.idcarrera = idcarrera;
         this.strnombrecarrera = strnombrecarrera;
         this.strdescripcioncarrera = strdescripcioncarrera;
         this.strnivel = strnivel;
-        this.idarea = idarea;
-        this.idescuela = idescuela;
-        this.strarea = strarea;
-        this.strescuela = strescuela;
+        this.objEscuela = objEscuela;
+        this.objArea = objArea;
     }
-
-    public ClaseCarrera(int idcarrera, String strnombrecarrera, String strdescripcioncarrera, String strnivel, String strarea, String strescuela) {
-        this.idcarrera = idcarrera;
-        this.strnombrecarrera = strnombrecarrera;
-        this.strdescripcioncarrera = strdescripcioncarrera;
-        this.strnivel = strnivel;
-        this.strarea = strarea;
-        this.strescuela = strescuela;
-    }
-
-   
 
     public int getIdcarrera() {
         return idcarrera;
@@ -77,38 +63,20 @@ public class ClaseCarrera {
         this.strnivel = strnivel;
     }
 
-    public int getIdarea() {
-        return idarea;
+    public ClaseEscuela getObjEscuela() {
+        return objEscuela;
     }
 
-    public void setIdarea(int idarea) {
-        this.idarea = idarea;
+    public void setObjEscuela(ClaseEscuela objEscuela) {
+        this.objEscuela = objEscuela;
     }
 
-    public int getIdescuela() {
-        return idescuela;
+    public ClaseArea getObjArea() {
+        return objArea;
     }
 
-    public void setIdescuela(int idescuela) {
-        this.idescuela = idescuela;
+    public void setObjArea(ClaseArea objArea) {
+        this.objArea = objArea;
     }
-
-    public String getStrarea() {
-        return strarea;
-    }
-
-    public void setStrarea(String strarea) {
-        this.strarea = strarea;
-    }
-
-    public String getStrescuela() {
-        return strescuela;
-    }
-
-    public void setStrescuela(String strescuela) {
-        this.strescuela = strescuela;
-    }
-
-    
 
 }

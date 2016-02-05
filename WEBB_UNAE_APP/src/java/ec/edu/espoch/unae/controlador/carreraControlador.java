@@ -5,6 +5,7 @@
  */
 package ec.edu.espoch.unae.controlador;
 
+import ec.edu.espoch.unae.entidad.ClaseArea;
 import ec.edu.espoch.unae.entidad.ClaseCarrera;
 import ec.edu.espoch.unae.modelo.mCarrera;
 import java.util.ArrayList;
@@ -25,11 +26,13 @@ public class carreraControlador {
     private ClaseCarrera objCarrera;
     private ClaseCarrera selobjCarrera;
     private ArrayList<ClaseCarrera> lstcarrea;
+    
 
     public carreraControlador() {
         this.objCarrera = new ClaseCarrera();
         this.selobjCarrera = new ClaseCarrera();
         this.lstcarrea = new ArrayList<>();
+      
     }
 
     public ClaseCarrera getObjCarrera() {
@@ -55,7 +58,6 @@ public class carreraControlador {
     public void setLstcarrea(ArrayList<ClaseCarrera> lstcarrea) {
         this.lstcarrea = lstcarrea;
     }
-
  
      @PostConstruct
     private void reinit() {

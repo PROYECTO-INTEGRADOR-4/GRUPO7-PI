@@ -46,15 +46,15 @@
                         <p:outputLabel value="#{carrera.strnivel}"/>
                     </p:column>
 
-
                     <p:column headerText="Area">
-                        <p:outputLabel value="#{carrera.strarea}"/>
+                        <p:outputLabel value="#{carrera.objArea.strarea}"/>
                     </p:column>
 
 
                     <p:column headerText="Escuela">
-                        <p:outputLabel value="#{carrera.strescuela}"/>
+                        <p:outputLabel value="#{carrera.objEscuela.nombreescuela}"/>
                     </p:column>
+                    
 
                 </p:dataTable>
 
@@ -72,7 +72,7 @@
                         <p:panelGrid 
                             columns="2"
                             styleClass="tblForm"
-                            rendered="#{areaControlador.objtArea!=null}">
+                            rendered="#{carreraControlador.objCarrera!=null}">
                             <h:outputLabel value="Nombre: " for="txtNombre"/>
                             <p:inputText 
                                 id="txtNombre" 
@@ -89,16 +89,15 @@
                                 id="txtNivel" 
                                 value="#{carreraControlador.objCarrera.strnivel}"
                                 />
-                            <h:outputLabel value="Area: " for="txtArea"/>
-                            <p:inputText 
-                                id="txtArea" 
-                                value="#{carreraControlador.objCarrera.idarea}"
-                                />
-                            <h:outputLabel value="Escuela: " for="txtEscuela"/>
-                            <p:inputText 
-                                id="txtEscuela" 
-                                value="#{carreraControlador.objCarrera.idescuela}"
-                                />
+                            <h:outputLabel value="Area: " for="txtEscuela"/>                         
+                            <p:selectOneMenu id="Escuela" value="#{carreraControlador.objCarrera.objArea.strarea}" style="width: 125px">
+                                <f:selectItems itemLabel="#{area.strarea}" itemValue="#{area.idarea}" value="#{areaControlador.lstarea}" var="area"/>
+                            </p:selectOneMenu>
+                            
+                            <h:outputLabel value="Escuela: " for="txtEscuela"/>                         
+                            <p:selectOneMenu id="Escuela" value="#{carreraControlador.objCarrera.objEscuela.nombreescuela}" style="width: 125px">
+                                <f:selectItems itemLabel="#{escuela.nombreescuela}" itemValue="#{escuela.idesceula}" value="#{escuelaControlador.lstEscuela}" var="escuela"/>
+                            </p:selectOneMenu>
                         </p:panelGrid>
                         <p:separator/>
                         <p:commandButton
