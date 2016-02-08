@@ -34,11 +34,29 @@
                             value="Paralelo" 
                             outcome="frmParalelo.xhtml"
                             /> 
+                        <p:menuitem 
+                            value="login" 
+                            outcome="login1.xhtml"
+                            /> 
+                        <p:menuitem 
+                            value="Salir" 
+                            actionListener="#{controladorLogin.logout}"
+                            oncomplete="logout(xhr, status, args)"
+
+                            /> 
                     </p:submenu>
 
                 </p:menu>
             </h:form>
+
         </ui:define>
+
     </ui:composition>
+    <script type="text/javascript">
+        function logout(xhr, status, args) {
+            setTimeout(function () {
+                window.location = '../index.xhtml';
+            }, 500);
+        }</script>
 </html>
 
