@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>PeriodoCarrera</title>
+    </h:head>
+    <p:growl autoUpdate="true"/>
+    <ui:composition template="frmCoordinador.xhtml">
+        <ui:define name="contenido">
+            <h:form id="frmPeriodoCarrera">
+                <p:dataTable
+                    id="dataListPeriodoCarrera"
+                    paginator="true"
+                    rows="10"
+                    reflow="true"
+                    var="periodoc"
+                    value="#{periodocarreraControlador.lstPeriodoCarrera}"
+                    >
+                    <f:facet name="header" class="right_content">
+                        <p:commandButton 
+                            id="createButton"
+                            value="Nuevo Período Carrera"
+                            update=":TperiodoCarreraCreateForm"
+                            oncomplete="PF('dlgInsertPeriodoCarrera').show();">
+
+                        </p:commandButton>
+                    </f:facet>
+
+                    <p:column headerText="ID">
+                        <p:outputLabel value="#{periodoc.idPeriodoCarrera}"/>
+                    </p:column>
+
+                    <p:column headerText="Periodo Academico">
+                        <p:outputLabel value="#{periodoc.objPeriodoAcademico.nombreClasePeriodoAcademico}"/>
+                    </p:column>                 
+
+                    <p:column headerText="Carrera">
+                        <p:outputLabel value="#{periodoc.objCarrera.strnombrecarrera}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+
+            <p:dialog 
+                header="Nuevo Período Carrera" 
+                widgetVar="dlgInsertPeriodoCarrera" 
+                showEffect="fade" 
+                hideEffect="explode" 
+                responsive="true" 
+                resizable="false">
+                <h:form id="TperiodoCarreraCreateForm">
+                    <h:panelGroup>
+                        <p:panelGrid 
+                            columns="2"
+                            styleClass="tblForm"
+                            rendered="#{periodocarreraControlador.objPeriodoCarrera!=null}">
+                            <h:outputLabel value="Periodo: " for="Periodo"/>                         
+                            <p:selectOneMenu id="Periodo"  value="#{periodocarreraControlador.objPeriodoCarrera.objPeriodoAcademico.idClasePeriodoAcademico}" style="width: 125px" >
+                                <f:selectItems var="periodoa" value="#{periodoAcademicoControlador.lstperiodo}" itemLabel="#{periodoa.nombreClasePeriodoAcademico}" itemValue="#{periodoa.idClasePeriodoAcademico}" />
+                            </p:selectOneMenu>
+                            <h:outputLabel value="Carrera: " for="Carrera"/>                         
+                            <p:selectOneMenu id="Carrera"  value="#{periodocarreraControlador.objPeriodoCarrera.objCarrera.idcarrera}" style="width: 125px" >
+                                <f:selectItems var="carrera" value="#{carreraControlador.lstcarrea}" itemLabel="#{carrera.strnombrecarrera}" itemValue="#{carrera.idcarrera}" />
+                            </p:selectOneMenu>
+
+                        </p:panelGrid>
+                        <p:separator/>
+                        <p:commandButton
+                            value="Guardar"
+                            actionListener="#{periodocarreraControlador.insertarCarrera()}"
+                            update=":frmPeriodoCarrera:dataListPeriodoCarrera"
+                            />
+                    </h:panelGroup>
+                </h:form>
+            </p:dialog>
+        </ui:define>
+    </ui:composition>
+
+</html>
+

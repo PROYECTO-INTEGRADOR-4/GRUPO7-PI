@@ -8,23 +8,23 @@ package ec.edu.espoch.unae.modelo;
 import ec.edu.espoch.unae.accesoadatos.AccesoDatos;
 import ec.edu.espoch.unae.accesoadatos.ConjuntoResultado;
 import ec.edu.espoch.unae.accesoadatos.Parametro;
-import ec.edu.espoch.unae.entidad.ClaseArea;
+import ec.edu.espoch.unae.entidad.ClaseTipoMateria;
 import java.util.ArrayList;
 
 /**
  *
  * @author PC
  */
-public class mArea {
+public class mTipoMateria {
 
-    public static boolean insertarArea(ClaseArea Area) throws Exception {
+    public static boolean insertarTipoMateria(ClaseTipoMateria TMateria) throws Exception {
         boolean respuesta = false;
         try {
 
-            String sql = "SELECT unae.fn_insert_area(?,?)";
+            String sql = "SELECT * from unae.fn_insert_tipomateria(?,?)";
             ArrayList<Parametro> lst = new ArrayList<>();
-            lst.add(new Parametro(1, Area.getStrarea()));
-            lst.add(new Parametro(2, Area.getStrdescripcion()));
+            lst.add(new Parametro(1, TMateria.getStrdescripcion()));
+            lst.add(new Parametro(2, TMateria.getPesomateria()));
 
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql, lst);
             while (rs.next()) {
@@ -41,38 +41,38 @@ public class mArea {
         return respuesta;
     }
 
-    public static ArrayList<ClaseArea> obtenerArea() throws Exception {
-        ArrayList<ClaseArea> lstArea = new ArrayList<>();
+    public static ArrayList<ClaseTipoMateria> obtenerTMateria() throws Exception {
+        ArrayList<ClaseTipoMateria> lstTMateria = new ArrayList<>();
         try {
             //inicializamos la sentncia ssql
-            String sql = "SELECT * from unae.fn_select_area()";
+            String sql = "SELECT * from unae.fn_select_tipomateria()";
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql);
-            lstArea = llenarDatos(rs);
+            lstTMateria = llenarDatos(rs);
             rs = null;
 
         } catch (Exception e) {
             throw e;
         }
-        return lstArea;
+        return lstTMateria;
     }
 
-    public static ArrayList<ClaseArea> llenarDatos(ConjuntoResultado rs) throws Exception {
-        ArrayList<ClaseArea> lstArea = new ArrayList<>();
+    public static ArrayList<ClaseTipoMateria> llenarDatos(ConjuntoResultado rs) throws Exception {
+        ArrayList<ClaseTipoMateria> lstTMateria = new ArrayList<>();
         try {
             //inicializamos la sentncia ssql
             while (rs.next()) {
-                ClaseArea Area = new ClaseArea(
-                        rs.getInt(0),
-                        rs.getString(1),
-                        rs.getString(2));
+                ClaseTipoMateria TMateria = new ClaseTipoMateria(
+                        rs.getInt(0), 
+                        rs.getString(1), 
+                        rs.getInt(2));
 
-                lstArea.add(Area);
+                lstTMateria.add(TMateria);
             }
 
         } catch (Exception e) {
             throw e;
         }
-        return lstArea;
+        return lstTMateria;
     }
 
 }

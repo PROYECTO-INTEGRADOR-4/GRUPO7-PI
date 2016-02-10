@@ -6,7 +6,9 @@
 
 package ec.edu.espoch.unae.controlador;
 import ec.edu.espoch.unae.entidad.ClaseFacultad;
+import ec.edu.espoch.unae.modelo.mFacultad;
 import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -51,6 +53,17 @@ public class facultadControlador {
     public void setLstFacultad(ArrayList<ClaseFacultad> lstFacultad) {
         this.lstFacultad = lstFacultad;
     }
-    
-    
+   @PostConstruct
+   private void reinit()
+   {
+       cargarFacultad();
+   }
+    public  void cargarFacultad()
+    {
+        try {
+            this.lstFacultad=mFacultad.obtenerFacultad();
+        } catch (Exception e) {
+            System.out.println("e" + e.getMessage().toString());
+        }
+    }
 }

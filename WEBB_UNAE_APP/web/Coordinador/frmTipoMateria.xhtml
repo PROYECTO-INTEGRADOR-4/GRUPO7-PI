@@ -2,86 +2,82 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Area</title>
+        <title>TipoMateria</title>
     </h:head>
     <p:growl autoUpdate="true"/>
     <ui:composition template="frmCoordinador.xhtml">
         <ui:define name="contenido">
-            <h:form id="frmArea">
+            <h:form id="frmTipoMateria">
                 <p:dataTable
-                    id="dataListArea"
+                    id="dataListTipoMateria"
                     paginator="true"
                     rows="10"
                     reflow="true"
-                    var="area"
-                    value="#{areaControlador.lstarea}"
-                    rendered="#{areaControlador.objtArea!=null}"
+                    var="tmateria"
+                    value="#{tipomateriaControlador.lstTipoMateria}"
+                    rendered="#{tipomateriaControlador.objtipoMateria!=null}"
                     >
                     <f:facet name="header" class="right_content">
                         <p:commandButton 
                             id="createButton"
-                            value="Nueva Area"
-                            update=":TareaCreateForm"
-                            oncomplete="PF('dlgInsertArea').show();">
+                            value="Nuevo Tipo de Materia"
+                            update=":TipoMateriaCreateForm"
+                            oncomplete="PF('dlgInsertTipoMateria').show();">
 
                         </p:commandButton>
                     </f:facet>
 
                     <p:column headerText="ID">
-                        <p:outputLabel value="#{area.idarea}"/>
+                        <p:outputLabel value="#{tmateria.idtipomateria}"/>
                     </p:column>
 
                     <p:column headerText="Nombre">
-                        <p:outputLabel value="#{area.strarea}"/>
+                        <p:outputLabel value="#{tmateria.strdescripcion}"/>
                     </p:column>
 
-                    <p:column headerText="Descripción">
-                        <p:outputLabel value="#{area.strdescripcion}"/>
+                    <p:column headerText="Peso">
+                        <p:outputLabel value="#{tmateria.pesomateria}"/>
                     </p:column>
-
-
-
                 </p:dataTable>
 
             </h:form>
 
             <p:dialog 
-                header="Nuevo Area" 
-                widgetVar="dlgInsertArea" 
+                header="Nuevo Tipo de Materia" 
+                widgetVar="dlgInsertTipoMateria" 
                 showEffect="fade" 
                 hideEffect="explode" 
                 responsive="true" 
                 resizable="false">
-                <h:form id="TareaCreateForm">
+                <h:form id="TipoMateriaCreateForm">
                     <h:panelGroup>
                         <p:panelGrid 
                             columns="2"
                             styleClass="tblForm"
-                            rendered="#{areaControlador.objtArea!=null}">
-                            <h:outputLabel value="Nombre: " for="txtNombre"/>
+                            rendered="#{tipomateriaControlador.objtipoMateria!=null}">
+                            <h:outputLabel value="Descripción: " for="txtNombre"/>
                             <p:inputText 
                                 id="txtNombre" 
-                                value="#{areaControlador.objtArea.strarea}"
+                                value="#{tipomateriaControlador.objtipoMateria.strdescripcion}"
                                 required="true"
-                                requiredMessage="Defina el nombre del Area"/>
-                            <h:outputLabel value="Descripción: " for="txtDescripcion"/>
+                                requiredMessage="Defina la descripción del tipo-materia que ha ingresado"/>
+                            <h:outputLabel value="Peso: " for="txtPeso"/>
                             <p:inputTextarea 
-                                id="txtDescripcion" 
-                                value="#{areaControlador.objtArea.strdescripcion}"
-                                rows="6" 
-                                cols="33"
-                               />
-
+                                id="txtPeso" 
+                                value="#{tipomateriaControlador.objtipoMateria.pesomateria}"  
+                                required="true"
+                                requiredMessage="Defina el peso de la materia"
+                                />
                         </p:panelGrid>
                         <p:separator/>
                         <p:commandButton
                             value="Guardar"
-                            actionListener="#{areaControlador.insertarArea()}"
-                            update=":frmArea:dataListArea"
+                            actionListener="#{tipomateriaControlador.insertarTipoMateria()}"
+                            update=":frmTipoMateria:dataListTipoMateria"
                             />
                     </h:panelGroup>
                 </h:form>

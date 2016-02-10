@@ -19,6 +19,7 @@
                     reflow="true"
                     var="disponibilidad"
                     value="#{disponibilidadControldaor.lstdisponibilidad}"
+                    
                     >
                     <f:facet name="header" class="right_content">
                         <p:commandButton 
@@ -79,13 +80,13 @@
                                 id="txtHora" 
                                 value="#{disponibilidadControldaor.objDisponibilidad.horadisponibilidad}"
                                 required="true"
-                                requiredMessage="Defina el la hora de la disponibilidad"/>
+                                requiredMessage="Defina  la hora de la disponibilidad"/>
                             <h:outputLabel value="Jornada: " for="txtJornada"/>
                             <p:inputText 
                                 id="txtJornada" 
                                 value="#{disponibilidadControldaor.objDisponibilidad.jornadadisponibilidad}"                                
                                 required="true"
-                                requiredMessage="Defina el la jornada de la disponibilidad"/>
+                                requiredMessage="Defina la jornada de la disponibilidad"/>
 
 
                         </p:panelGrid>

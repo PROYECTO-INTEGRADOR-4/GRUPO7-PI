@@ -14,14 +14,19 @@ public class ClasePeriodoCarrera {
     private int idPeriodoCarrera;
     private int idPeriodo;
     private int idCarrera;
+    
+    private ClasePeriodoAcademico objPeriodoAcademico;
+    private ClaseCarrera objCarrera;
 
     public ClasePeriodoCarrera() {
     }
 
-    public ClasePeriodoCarrera(int idPeriodoCarrera, int idPeriodo, int idCarrera) {
+    public ClasePeriodoCarrera(int idPeriodoCarrera, int idPeriodo, int idCarrera, ClasePeriodoAcademico objPeriodoAcademico, ClaseCarrera objCarrera) {
         this.idPeriodoCarrera = idPeriodoCarrera;
         this.idPeriodo = idPeriodo;
         this.idCarrera = idCarrera;
+        this.objPeriodoAcademico = objPeriodoAcademico;
+        this.objCarrera = objCarrera;
     }
 
     public int getIdPeriodoCarrera() {
@@ -47,6 +52,22 @@ public class ClasePeriodoCarrera {
     public void setIdCarrera(int idCarrera) {
         this.idCarrera = idCarrera;
     }
-    
+
+    public ClasePeriodoAcademico getObjPeriodoAcademico() {
+        return objPeriodoAcademico;
+    }
+
+    public void setObjPeriodoAcademico(ClasePeriodoAcademico objPeriodoAcademico) {
+        this.objPeriodoAcademico = objPeriodoAcademico;
+    }
+
+    public ClaseCarrera getObjCarrera() {
+        return objCarrera;
+    }
+
+    public void setObjCarrera(ClaseCarrera objCarrera) {
+        this.objCarrera = objCarrera;
+    }
+
     
 }

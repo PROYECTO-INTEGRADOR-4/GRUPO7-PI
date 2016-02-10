@@ -51,7 +51,7 @@ public class mCarrera {
         ArrayList<ClaseCarrera> lstCarrera = new ArrayList<>();
         try {
             //inicializamos la sentncia ssql
-            String sql = "SELECT * from unae.fn_select_carrera()";
+            String sql = "SELECT * from unae.fn_select_carrera1()";
             ConjuntoResultado rs = AccesoDatos.ejecutaQuery(sql);
             lstCarrera = llenarDatos(rs);
             rs = null;
@@ -74,11 +74,10 @@ public class mCarrera {
                 Carrera.setStrnombrecarrera(rs.getString(1));
                 Carrera.setStrdescripcioncarrera(rs.getString(2));
                 Carrera.setStrnivel(rs.getString(3));
-                objArea.setStrdescripcion(rs.getString(4));
+                objArea.setStrarea(rs.getString(4));
                 Carrera.setObjArea(objArea);
                 objEscuela.setNombreescuela(rs.getString(5));
-                Carrera.setObjEscuela(objEscuela);              
-                       
+                Carrera.setObjEscuela(objEscuela);       
                 lstCarrera.add(Carrera);
             }
 

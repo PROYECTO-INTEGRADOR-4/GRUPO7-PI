@@ -58,7 +58,7 @@ public class areaControlador {
     public void setLstarea(ArrayList<ClaseArea> lstarea) {
         this.lstarea = lstarea;
     }
-     @PostConstruct
+   @PostConstruct
     private void reinit() {
         cargarArea();
     }
@@ -75,7 +75,7 @@ public class areaControlador {
 
     public void insertarArea() {
         try {
-            String a="a";
+            
             if (mArea.insertarArea(objtArea)) {
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.addMessage("Exito", new FacesMessage("Datos insertados correctamente"));

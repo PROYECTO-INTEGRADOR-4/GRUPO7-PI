@@ -6,82 +6,71 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Area</title>
+        <title>TipoDocente</title>
     </h:head>
     <p:growl autoUpdate="true"/>
     <ui:composition template="frmCoordinador.xhtml">
         <ui:define name="contenido">
-            <h:form id="frmArea">
+            <h:form id="frmTipoDocente">
                 <p:dataTable
-                    id="dataListArea"
+                    id="dataListTipoDocente"
                     paginator="true"
                     rows="10"
                     reflow="true"
-                    var="area"
-                    value="#{areaControlador.lstarea}"
-                    rendered="#{areaControlador.objtArea!=null}"
+                    var="tdocente"
+                    value="#{tipodocenteControlador.lstTipoDocente}"
+                    rendered="#{tipomateriaControlador.objtipoMateria!=null}"
                     >
                     <f:facet name="header" class="right_content">
                         <p:commandButton 
                             id="createButton"
-                            value="Nueva Area"
-                            update=":TareaCreateForm"
-                            oncomplete="PF('dlgInsertArea').show();">
+                            value="Nuevo Tipo de Materia"
+                            update=":TipoDocenteCreateForm"
+                            oncomplete="PF('dlgInsertTipoDocente').show();">
 
                         </p:commandButton>
                     </f:facet>
 
                     <p:column headerText="ID">
-                        <p:outputLabel value="#{area.idarea}"/>
+                        <p:outputLabel value="#{tdocente.idTipodocente}"/>
                     </p:column>
 
                     <p:column headerText="Nombre">
-                        <p:outputLabel value="#{area.strarea}"/>
+                        <p:outputLabel value="#{tdocente.strdescripcion}"/>
                     </p:column>
 
-                    <p:column headerText="Descripción">
-                        <p:outputLabel value="#{area.strdescripcion}"/>
-                    </p:column>
-
-
-
+                   
                 </p:dataTable>
 
             </h:form>
 
             <p:dialog 
-                header="Nuevo Area" 
-                widgetVar="dlgInsertArea" 
+                header="Nuevo Tipo de Docente" 
+                widgetVar="dlgInsertTipoDocente" 
                 showEffect="fade" 
                 hideEffect="explode" 
                 responsive="true" 
                 resizable="false">
-                <h:form id="TareaCreateForm">
+                <h:form id="TipoDocenteCreateForm">
                     <h:panelGroup>
                         <p:panelGrid 
                             columns="2"
                             styleClass="tblForm"
-                            rendered="#{areaControlador.objtArea!=null}">
-                            <h:outputLabel value="Nombre: " for="txtNombre"/>
+                            rendered="#{tipodocenteControlador.objtipoDocente!=null}">
+                            <h:outputLabel value="Descripción: " for="txtNombre"/>
                             <p:inputText 
                                 id="txtNombre" 
-                                value="#{areaControlador.objtArea.strarea}"
+                                value="#{tipodocenteControlador.objtipoDocente.strdescripcion}"
                                 required="true"
-                                requiredMessage="Defina el nombre del Area"/>
-                            <h:outputLabel value="Descripción: " for="txtDescripcion"/>
-                            <p:inputTextarea 
-                                id="txtDescripcion" 
-                                value="#{areaControlador.objtArea.strdescripcion}"
-                                rows="6" 
-                                cols="33"
-                               />
-
+                                requiredMessage="Defina la descripción del tipo-docente que ha ingresado"/>
+                            <h:outputLabel value="Peso: " for="txtPeso"/>
+                            
                         </p:panelGrid>
                         <p:separator/>
                         <p:commandButton
                             value="Guardar"
-                            actionListener="#{areaControlador.insertarArea()}"
-                            update=":frmArea:dataListArea"
+                            actionListener="#{tipodocenteControlador.insertarTipoDocente()}"
+                            update=":frmTipoDocente:dataListTipoDocente"
                             />
                     </h:panelGroup>
                 </h:form>

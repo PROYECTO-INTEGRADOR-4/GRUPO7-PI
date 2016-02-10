@@ -57,7 +57,7 @@ public class disponibilidadControldaor {
     }
 
     @PostConstruct
-    private void reinit() {
+    public void reinit() {
         cargarDisponibilidad();
     }
 

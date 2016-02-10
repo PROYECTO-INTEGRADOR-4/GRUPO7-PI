@@ -6,16 +6,19 @@
 package ec.edu.espoch.unae.controlador;
 
 import ec.edu.espoch.unae.entidad.ClaseEscuela;
+import ec.edu.espoch.unae.modelo.mEscuela;
 import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  *
  * @author PC
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class escuelaControlador {
 
     private ClaseEscuela objEscuela;
@@ -23,9 +26,9 @@ public class escuelaControlador {
     private ArrayList<ClaseEscuela> lstEscuela;
 
     public escuelaControlador() {
-        this.objEscuela= new ClaseEscuela();
-        this.seolbjEscuela= new ClaseEscuela();
-        this.lstEscuela= new ArrayList<>();
+        this.objEscuela = new ClaseEscuela();
+        this.seolbjEscuela = new ClaseEscuela();
+        this.lstEscuela = new ArrayList<>();
     }
 
     public ClaseEscuela getObjEscuela() {
@@ -51,6 +54,18 @@ public class escuelaControlador {
     public void setLstEscuela(ArrayList<ClaseEscuela> lstEscuela) {
         this.lstEscuela = lstEscuela;
     }
-    
+
+    @PostConstruct
+    private void reinit() {
+        cargarEscuela();
+    }
+
+    public void cargarEscuela() {
+        try {
+            this.lstEscuela = mEscuela.obtenerEscuela();
+        } catch (Exception e) {
+            System.out.println("e" + e.getMessage().toString());
+        }
+    }
 
 }

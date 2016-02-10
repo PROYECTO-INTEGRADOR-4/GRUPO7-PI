@@ -19,6 +19,8 @@
                     reflow="true"
                     var="carrera"
                     value="#{carreraControlador.lstcarrea}"
+                    rendered="#{carreraControlador.lstcarrea!=null}"
+                 
                     >
                     <f:facet name="header" class="right_content">
                         <p:commandButton 
@@ -50,11 +52,10 @@
                         <p:outputLabel value="#{carrera.objArea.strarea}"/>
                     </p:column>
 
-
                     <p:column headerText="Escuela">
                         <p:outputLabel value="#{carrera.objEscuela.nombreescuela}"/>
                     </p:column>
-                    
+
 
                 </p:dataTable>
 
@@ -89,15 +90,17 @@
                                 id="txtNivel" 
                                 value="#{carreraControlador.objCarrera.strnivel}"
                                 />
-                            <h:outputLabel value="Area: " for="txtEscuela"/>                         
-                            <p:selectOneMenu id="Escuela" value="#{carreraControlador.objCarrera.objArea.strarea}" style="width: 125px">
-                                <f:selectItems itemLabel="#{area.strarea}" itemValue="#{area.idarea}" value="#{areaControlador.lstarea}" var="area"/>
+
+                            <h:outputLabel value="Area: " for="Area"/>                         
+                            <p:selectOneMenu id="Area"  value="#{carreraControlador.objCarrera.objArea.idarea}" style="width: 125px" >
+                                <f:selectItems var="area" value="#{areaControlador.lstarea}" itemLabel="#{area.strarea}" itemValue="#{area.idarea}" />
                             </p:selectOneMenu>
                             
-                            <h:outputLabel value="Escuela: " for="txtEscuela"/>                         
-                            <p:selectOneMenu id="Escuela" value="#{carreraControlador.objCarrera.objEscuela.nombreescuela}" style="width: 125px">
-                                <f:selectItems itemLabel="#{escuela.nombreescuela}" itemValue="#{escuela.idesceula}" value="#{escuelaControlador.lstEscuela}" var="escuela"/>
+                            <h:outputLabel value="Escuela: " for="Escuela"/>                    
+                            <p:selectOneMenu id="Escuela"  value="#{carreraControlador.objCarrera.objEscuela.idesceula}" style="width: 125px">
+                                <f:selectItems  var = "escuela" value="#{escuelaControlador.lstEscuela}" itemLabel="#{escuela.nombreescuela}" itemValue="#{escuela.idesceula}"/>
                             </p:selectOneMenu>
+
                         </p:panelGrid>
                         <p:separator/>
                         <p:commandButton

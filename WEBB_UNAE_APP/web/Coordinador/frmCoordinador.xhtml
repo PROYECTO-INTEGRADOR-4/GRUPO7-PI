@@ -35,22 +35,33 @@
                             outcome="frmParalelo.xhtml"
                             /> 
                         <p:menuitem 
-                            value="Salir" 
-                            actionListener="#{controladorLogin.logout}"
-                            oncomplete="logout(xhr, status, args)"
-
+                            value="Tipo-Materia" 
+                            outcome="frmTipoMateria.xhtml"
                             /> 
+                        <p:menuitem 
+                            value="Tipo-Docente" 
+                            outcome="frmTipoDocente.xhtml"
+                            />
+                        <p:menuitem 
+                            value="Periodo-Carrera" 
+                            outcome="frmPeriodoCarrera.xhtml"
+                            />
+                        <p:menuitem 
+                            value="Salir"
+                            actionListener="#{controladorLogin.logout}"
+                            oncomplete="logout(xhr,status,args)"
+                            />
+
+
                     </p:submenu>
 
                 </p:menu>
             </h:form>
-
         </ui:define>
-
     </ui:composition>
     <script type="text/javascript">
         function logout(xhr, status, args) {
-            setTimeout(function () {
+            setTimeout(function() {
                 window.location = '../index.xhtml';
             }, 500);
         }</script>

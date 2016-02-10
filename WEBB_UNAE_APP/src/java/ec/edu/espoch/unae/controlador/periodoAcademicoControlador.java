@@ -58,7 +58,7 @@ public class periodoAcademicoControlador {
     }
 
     @PostConstruct
-    private void reinit() {
+    public void reinit() {
         cargarPeriodoAcademico();
     }
 
@@ -74,7 +74,7 @@ public class periodoAcademicoControlador {
 
     public void insertarPeriodoAcademico() {
         try {
-            String a="a";
+            
             if (mPeriodoAcademico.insertarPeriodoAcademico(objperiodo)) {
                 FacesContext context = FacesContext.getCurrentInstance();
                 context.addMessage("Exito", new FacesMessage("Datos insertados correctamente"));

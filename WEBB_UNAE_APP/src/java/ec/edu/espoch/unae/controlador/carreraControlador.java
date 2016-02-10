@@ -7,6 +7,7 @@ package ec.edu.espoch.unae.controlador;
 
 import ec.edu.espoch.unae.entidad.ClaseArea;
 import ec.edu.espoch.unae.entidad.ClaseCarrera;
+import ec.edu.espoch.unae.entidad.ClaseEscuela;
 import ec.edu.espoch.unae.modelo.mCarrera;
 import java.util.ArrayList;
 import javax.annotation.PostConstruct;
@@ -61,6 +62,14 @@ public class carreraControlador {
  
      @PostConstruct
     private void reinit() {
+        ClaseArea objArea= new ClaseArea();
+        this.objCarrera.setObjArea(objArea);
+        this.selobjCarrera.setObjArea(objArea);
+        
+        ClaseEscuela objEscuela= new ClaseEscuela();
+        this.objCarrera.setObjEscuela(objEscuela);
+        this.selobjCarrera.setObjEscuela(objEscuela);
+        
         cargarCarrera();
     }
 
