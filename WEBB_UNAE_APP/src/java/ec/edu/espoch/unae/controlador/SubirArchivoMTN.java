@@ -6,7 +6,6 @@
 package ec.edu.espoch.unae.controlador;
 //package org.primefaces.showcase.view.file;
 
-
 import ec.edu.espoch.unae.entidad.ClaseEstudiante;
 import ec.edu.espoch.unae.modelo.mIngresarEstudiante;
 import java.io.File;
@@ -79,13 +78,13 @@ public class SubirArchivoMTN {
 
         int x = 1; //Contador de columna interno
         try {
-            
+
             Workbook archivoExcel = null;
 
             InputStream file1;
             file1 = event.getFile().getInputstream();
             //this.nombreArchivo = event.getFile().getFileName();
-           
+
             archivoExcel = Workbook.getWorkbook(file1);
 
             for (int sheetNo = 0; sheetNo < archivoExcel.getNumberOfSheets(); sheetNo++) // Recorre 
@@ -161,7 +160,7 @@ public class SubirArchivoMTN {
                                 per.setStrfinanciamiento_ue(data);
                                 x++;
                                 break;
-                                case 15:
+                            case 15:
                                 per.setStrdireccion(data);
                                 x++;
                                 break;
@@ -195,10 +194,17 @@ public class SubirArchivoMTN {
             objEtudiante = it.next();
             try {
                 if (mIngresarEstudiante.insertarEstudiante(objEtudiante)) {
-                    Util.addSuccessMessage("Datos Insertados");
+                    FacesContext context = FacesContext.getCurrentInstance();
+                    context.addMessage("Exito", new FacesMessage("Datos insertados correctamente"));
+                } else {
+                    FacesContext context = FacesContext.getCurrentInstance();
+                    context.addMessage("Fracaso", new FacesMessage("Datos no insertados"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(SubirArchivoMTN.class.getName()).log(Level.SEVERE, null, ex);
+                FacesContext context = FacesContext.getCurrentInstance();
+                context.addMessage("Exito", new FacesMessage(ex.getMessage()));
+
             }
 
         }

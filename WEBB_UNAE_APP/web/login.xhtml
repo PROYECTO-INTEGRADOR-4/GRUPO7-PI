@@ -6,10 +6,11 @@
     <h:head>
         <title>Area</title>
     </h:head>
-    <p:growl autoUpdate="true"/>
+ 
     <ui:composition template="index.xhtml">
         <ui:define name="contenido">
             <h:form id="frmLogin">
+                
                <p:growl id="growl" sticky="true" showDetail="true" life="10000" />
 
             <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">

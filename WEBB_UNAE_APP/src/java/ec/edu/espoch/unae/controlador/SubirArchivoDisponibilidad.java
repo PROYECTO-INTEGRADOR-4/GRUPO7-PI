@@ -208,12 +208,17 @@ public class SubirArchivoDisponibilidad {
                     Util.addSuccessMessage("Datos Insertados");
 //                      FacesMessage message = new FacesMessage("Succesful subido .");
 //                       FacesContext.getCurrentInstance().addMessage(null, message);
+                 FacesContext context = FacesContext.getCurrentInstance();
+                    context.addMessage("Exito", new FacesMessage("Datos insertados correctamente"));
+                } else {
+                    FacesContext context = FacesContext.getCurrentInstance();
+                    context.addMessage("Fracaso", new FacesMessage("Datos no insertados"));
                 }
             } catch (Exception ex) {
                 Logger.getLogger(SubirArchivoDisponibilidad.class.getName()).log(Level.SEVERE, null, ex);
-                FacesMessage message = new FacesMessage("fALLO  .");
-                FacesContext.getCurrentInstance().addMessage(null, message);
-            }
+              FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage("Exito", new FacesMessage(ex.getMessage()));
+     }
 
         }
     }
