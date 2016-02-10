@@ -130,7 +130,7 @@ public class LoginFilter implements Filter {
                             res.sendRedirect(req.getContextPath() + "/faces/Coordinador/frmCoordinador.xhtml");
                         } else {
                             if (redireccionarUsuarioNormal(urlStr, loginBean)) {
-                                res.sendRedirect(req.getContextPath() + "/faces/UsuarioNormal/bienvenida/inicio.xhtml"); //ojo
+                                res.sendRedirect(req.getContextPath() + "/faces/Docente/frmDocente.xhtml"); //ojo
                             }
                         }
 
@@ -232,8 +232,9 @@ public class LoginFilter implements Filter {
     private Boolean redireccionarAdmin(String urlStr, ControladorLogin loginBean) {
         Boolean respuesta = false;
         try {
-            if (urlStr.contains("usuarionormal") && loginBean.getObjLogin().getObjRol().getStrRolDescripcion().equals("Coordinador")) {
-                System.out.println("admin!!");
+            if (urlStr.contains("coordinador") 
+                    && loginBean.getObjLogin().getObjRol().getStrRolDescripcion().equals("Coordinador")) {
+                System.out.println("Coordinador!!");
                 respuesta = true;
             }
         } catch (Exception e) {
@@ -245,7 +246,8 @@ public class LoginFilter implements Filter {
     private Boolean paginasAdmin(String urlStr, ControladorLogin loginBean) {
         Boolean respuesta = false;
         try {
-            if (urlStr.contains("Coordinador") && loginBean.getObjLogin().getObjRol().getStrRolDescripcion().equals("Coordinador")) {
+            if (urlStr.contains("coordinador") 
+                    && loginBean.getObjLogin().getObjRol().getStrRolDescripcion().equals("Coordinador")) {
                 System.out.println("Coordinador!!");
                 respuesta = true;
             }
@@ -258,8 +260,8 @@ public class LoginFilter implements Filter {
     private Boolean redireccionarUsuarioNormal(String urlStr, ControladorLogin loginBean) {
         Boolean respuesta = false;
         try {
-            if (urlStr.contains("Coordinador") && !loginBean.getObjLogin().getObjRol().getStrRolDescripcion().equals("Coordinador")) {
-                System.out.println("Coordinador!!");
+            if (urlStr.contains("Docente") && !loginBean.getObjLogin().getObjRol().getStrRolDescripcion().equals("Docente")) {
+                System.out.println("Docente!!");
                 respuesta = true;
             }
         } catch (Exception e) {
@@ -271,7 +273,7 @@ public class LoginFilter implements Filter {
     private Boolean paginasUsuarioNormal(String urlStr, ControladorLogin loginBean) {
         Boolean respuesta = false;
         try {
-            if (urlStr.contains("usuarionormal") || loginBean.getObjLogin().getObjRol().getStrRolDescripcion().equals("Coordinador")) {
+            if (urlStr.contains("Docente") || loginBean.getObjLogin().getObjRol().getStrRolDescripcion().equals("Docente")) {
                 System.out.println("usuario normal!!");
                 respuesta = true;
             }

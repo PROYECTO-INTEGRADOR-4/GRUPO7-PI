@@ -84,8 +84,8 @@ public class ControladorLogin implements Serializable {
             objLogin = mLogin.login(username, password);
             if (objLogin != null) {
                 loggedIn = true;
-                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienbenido",                        
-                        objLogin.getObjRol().getStrRolDescripcion()+objLogin.getStrnombre());
+                message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienbenido",
+                        objLogin.getObjRol().getStrRolDescripcion() + objLogin.getStrnombre());
             } else {
                 loggedIn = false;
                 message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Credenciales incorrectas");
@@ -94,9 +94,22 @@ public class ControladorLogin implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, message);
         context.addCallbackParam("loggedIn", loggedIn);
         if (loggedIn) {
-            context.addCallbackParam("view", "Coordinador/frmCoordinador.xhtml");
+            redireccionarPaginas(context);
+            
         }
     }
+
+    private void redireccionarPaginas(RequestContext context) {
+        switch (this.objLogin.getObjRol().getStrRolDescripcion()) {
+            case "Coordinador":
+                context.addCallbackParam("view", "Coordinador/frmCoordinador.xhtml");
+                break;
+            case "Docente":
+                context.addCallbackParam("view", "Docente/frmDocente.xhtml");
+                break;
+
+        }
+            }
 
     public void logout() {
         HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);

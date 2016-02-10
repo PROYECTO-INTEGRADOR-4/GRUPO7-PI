@@ -7,32 +7,31 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title>unae</title>
-        <h:outputStylesheet name="./css/default.css"/>
-        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Coordinador</title>
     </h:head>
-    <ui:composition template="/Plantilla/home.xhtml">
+    <ui:composition template="../Plantilla/home.xhtml">
         <ui:define name="menu">   
-            <h:form>
-
+            <h:form id="menuForm">
                 <p:menu>
                     <p:submenu label="Panel de Opciones">
-
-
                         <p:menuitem 
-                            value="Ingresar" 
-                            outcome="login.xhtml"
+                            value="Ingresar Notas" 
 
-                            /> 
+                            />            
+
                     </p:submenu>
 
-                </p:menu>   
-
+                </p:menu>
             </h:form>
 
         </ui:define>
 
     </ui:composition>
-
-
+    <script type="text/javascript">
+        function logout(xhr, status, args) {
+            setTimeout(function () {
+                window.location = '../index.xhtml';
+            }, 500);
+        }</script>
 </html>
+

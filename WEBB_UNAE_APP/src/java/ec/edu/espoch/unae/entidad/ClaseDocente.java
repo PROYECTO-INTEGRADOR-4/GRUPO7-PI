@@ -35,11 +35,12 @@ public class ClaseDocente {
     private String strUsuario;
     private String strClave;
     private ClaseRol ObjRol;
+    private int introl;
 
     public ClaseDocente() {
     }
 
-    public ClaseDocente(int int_iddocente, String strccdocente, String strapellido, String strnombre, String strhabilitacion, String strlugartrabajo, String strcargo, String strdireccionpostal, String stremail, String strtitulotercernivel, String strtitulocuartonivel, String strareaconocimiento, String strtipodocente, String strciudadtrabajo, String strtelefonodomicilio, String strtelefonooficina, String numerocelular, String strfax, Integer id_disponibilidad, Integer id_docentecentralizada, Integer id_tipodocente, String strUsuario, String strClave, ClaseRol ObjRol) {
+    public ClaseDocente(int int_iddocente, String strccdocente, String strapellido, String strnombre, String strhabilitacion, String strlugartrabajo, String strcargo, String strdireccionpostal, String stremail, String strtitulotercernivel, String strtitulocuartonivel, String strareaconocimiento, String strtipodocente, String strciudadtrabajo, String strtelefonodomicilio, String strtelefonooficina, String numerocelular, String strfax, Integer id_disponibilidad, Integer id_docentecentralizada, Integer id_tipodocente, String strUsuario, String strClave, ClaseRol ObjRol, String strrol) {
         this.int_iddocente = int_iddocente;
         this.strccdocente = strccdocente;
         this.strapellido = strapellido;
@@ -64,8 +65,20 @@ public class ClaseDocente {
         this.strUsuario = strUsuario;
         this.strClave = strClave;
         this.ObjRol = ObjRol;
+        this.introl = introl;
     }
 
+    public int getIntrol() {
+        return introl;
+    }
+
+    public void setIntrol(int introl) {
+        this.introl = introl;
+    }
+
+   
+
+    
     public int getInt_iddocente() {
         return int_iddocente;
     }

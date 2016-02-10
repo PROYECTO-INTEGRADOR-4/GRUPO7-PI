@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      template="Coordinador.xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:composition template="frmCoordinador.xhtml">
+        <ui:define name="top">
+            Página que permite manipular los datos de un cliente
+        </ui:define>
+         <ui:define name="contenido">
+            <h:form enctype="multipart/form-data">
+                <p:panel id="ingresadocente" header="Ingresar Archivo MTN" >
+                <p:growl id="messages" showDetail="true" />
+                <p:commandButton 
+                    value="Subir" ajax="false" actionListener="#{subirArchivoMTN.subirBD()}"  />
+                <p:fileUpload 
+                    fileUploadListener="#{subirArchivoMTN.listar}" 
+                    mode="advanced" 
+                    cancelLabel="Cancelar" 
+                    label="Seleccionar" 
+                    uploadLabel="Listar"
+                    update="dtabla"/>
+                <p:dataTable 
+                    id="dtabla" 
+                    value="#{subirArchivoMTN.lista}" 
+                    var="p" paginator="true" rows="25"> 
+                    <p:column headerText="Cedula">
+                        <p:outputLabel value="#{p.ccestudiante}" />
+                    </p:column>
+                    <p:column headerText="Apllido">
+                        <p:outputLabel value="#{p.strapellido}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <p:outputLabel value="#{p.strnombre}" />
+                    </p:column>
+                    <p:column headerText="Fecha Nacimiento">
+                        <p:outputLabel value="#{p.strfechadenacimiento}" />
+                    </p:column>
+                    <p:column headerText="Genero">
+                        <p:outputLabel value="#{p.strgenero}" />
+                    </p:column>
+                    <p:column headerText="Carnet Conadis">
+                        <p:outputLabel value="#{p.strcarnetconadis}" />
+                    </p:column>
+                    <p:column headerText="% De Discaoacidad ">
+                        <p:outputLabel value="#{p.intporcentajediscapacidad}" />
+                    </p:column>
+                    <p:column headerText="Email">
+                        <p:outputLabel value="#{p.stremail}" />
+
+                    </p:column>
+                    <p:column headerText="Telefono">
+                        <p:outputLabel value="#{p.numerotelefono}" />
+                    </p:column>
+                    <p:column headerText="Direccion">
+                        <p:outputLabel value="#{p.strdireccion}" />
+                    </p:column>
+                    <p:column headerText="Cell">
+                        <p:outputLabel value="#{p.numerocelular}" />
+                    </p:column>
+                    <p:column headerText="Etnia">
+                        <p:outputLabel value="#{p.stretnia}" />
+                    </p:column>
+                    <p:column headerText="Unidad Educativa">
+                        <p:outputLabel value="#{p.strunidadeducativa}" />
+
+                    </p:column>
+                    <p:column headerText="Financiamiento UE">
+                        <p:outputLabel value="#{p.strfinanciamiento_ue}" />
+                    </p:column>
+                    </p:dataTable>
+                <h:commandLink id="excel">
+                    <p:graphicImage name="../images/submit.png" />                    
+                    <p:dataExporter type="xls" target="dtabla" fileName="nomina" />
+                </h:commandLink>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
