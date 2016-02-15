@@ -7,28 +7,62 @@
       xmlns:p="http://primefaces.org/ui">
 
     <h:head>
-        <title>unae</title>
+        <title>Inicio</title>
         <h:outputStylesheet name="./css/default.css"/>
         <h:outputStylesheet name="./css/cssLayout.css"/>
+         <script type="text/javascript">
+                function handleLoginRequest(xhr, status, args) {
+                    if (args.validationFailed || !args.loggedIn) {
+                        PF('dlg').jq.effect("shake", {times: 5}, 100);
+                    }
+                    else {
+                        PF('dlg').hide();
+                        $('#loginLink').fadeOut();
+                        setTimeout(function()
+                        {
+                            window.location = args.view;
+                        })
+                    }
+                }
+            </script>
     </h:head>
+    <p:growl id="growl" sticky="true" showDetail="true" life="10000" />
     <ui:composition template="/Plantilla/home.xhtml">
         <ui:define name="menu">   
             <h:form>
 
                 <p:menu>
-                    <p:submenu label="Panel de Opciones">
-
-
+                    <p:submenu label="Opciones">
                         <p:menuitem 
                             value="Ingresar" 
                             outcome="login.xhtml"
-
+                            /> 
+                        <p:menuitem 
+                            value="Iniciar Sesión"                 
+                            oncomplete="PF('dlglogin').show();"
                             /> 
                     </p:submenu>
+                </p:menu> 
+                <p:dialog header="Login" widgetVar="dlglogin" resizable="false">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="username" value="Username:" />
+                        <p:inputText id="username" value="#{controladorLogin.username}" required="true" label="username" />
 
-                </p:menu>   
+                        <h:outputLabel for="password" value="Password:" />
+                        <p:password id="password" value="#{controladorLogin.password}" required="true" label="password" />
 
+                        <f:facet name="footer">
+
+                            <p:commandButton value="Login" update="growl" actionListener="#{controladorLogin.login}"
+                                             oncomplete="handleLoginRequest(xhr, status, args)" />
+                        </f:facet>  
+                    </h:panelGrid>
+                </p:dialog>
             </h:form>
+
+
+
+
 
         </ui:define>
 

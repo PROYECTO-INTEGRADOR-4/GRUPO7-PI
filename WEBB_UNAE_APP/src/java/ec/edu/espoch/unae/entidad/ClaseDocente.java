@@ -34,6 +34,10 @@ public class ClaseDocente {
     private Integer id_tipodocente;
     private String strUsuario;
     private String strClave;
+    
+    private ClaseDisponibilidad ObjDisponibilidad;
+    private ClaseTipodocente ObjTipodocente;
+    
     private ClaseRol ObjRol;
     private int introl;
 
@@ -269,6 +273,22 @@ public class ClaseDocente {
 
     public void setObjRol(ClaseRol ObjRol) {
         this.ObjRol = ObjRol;
+    }
+
+    public ClaseDisponibilidad getObjDisponibilidad() {
+        return ObjDisponibilidad;
+    }
+
+    public void setObjDisponibilidad(ClaseDisponibilidad ObjDisponibilidad) {
+        this.ObjDisponibilidad = ObjDisponibilidad;
+    }
+
+    public ClaseTipodocente getObjTipodocente() {
+        return ObjTipodocente;
+    }
+
+    public void setObjTipodocente(ClaseTipodocente ObjTipodocente) {
+        this.ObjTipodocente = ObjTipodocente;
     }
 
 }
